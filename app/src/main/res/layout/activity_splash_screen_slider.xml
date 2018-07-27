@@ -48,7 +48,7 @@
                 android:id="@+id/SplashScreenSwipeNext"
                 android:textSize="15sp"
                 android:gravity="right"
-                android:layout_marginRight="13dp"
+                android:layout_marginRight="14dp"
                 android:layout_gravity="right"
                 android:textColor="#fff"/>
         </LinearLayout>
