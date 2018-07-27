@@ -43,7 +43,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Next"
-                android:visibility="gone"
+                android:visibility="invisible"
                 android:layout_marginTop="5dp"
                 android:id="@+id/SplashScreenSwipeNext"
                 android:textSize="15sp"

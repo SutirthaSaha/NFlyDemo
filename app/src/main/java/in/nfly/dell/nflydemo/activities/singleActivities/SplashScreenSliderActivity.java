@@ -14,7 +14,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import in.nfly.dell.nflydemo.R;
+import in.nfly.dell.nflydemo.User;
 import in.nfly.dell.nflydemo.activities.LoginActivity;
+import in.nfly.dell.nflydemo.activities.MainActivity;
 import in.nfly.dell.nflydemo.adapters.SplashScreenSwipeAdapter;
 import me.relex.circleindicator.CircleIndicator;
 
@@ -38,6 +40,14 @@ public class SplashScreenSliderActivity extends AppCompatActivity {
         Previous=findViewById(R.id.SplashScreenSwipePrev);
         Next=findViewById(R.id.SplashScreenSwipeNext);
 
+        User user=new User(SplashScreenSliderActivity.this);
+        if(user.getEmail()!=""){
+            Intent intent=new Intent(SplashScreenSliderActivity.this,MainActivity.class);
+            intent.putExtra("email",user.getEmail());
+            startActivity(intent);
+            finish();
+        }
+
 
         setViewPager();
     }
@@ -54,7 +64,8 @@ public class SplashScreenSliderActivity extends AppCompatActivity {
         final Runnable update = new Runnable() {
             @Override
             public void run() {
-                if(currentPage==NUM_PAGES){
+                if(currentPage==(NUM_PAGES-1)){
+                    Next.setText("Login");
                     Next.setVisibility(View.VISIBLE);
                     Next.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -63,11 +74,11 @@ public class SplashScreenSliderActivity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-
-                    currentPage=0;
-
                   //  Previous.setVisibility(View.VISIBLE);
 
+                }
+                if(currentPage==NUM_PAGES){
+                    currentPage=0;
                 }
                 else if(currentPage==0)
                 {
