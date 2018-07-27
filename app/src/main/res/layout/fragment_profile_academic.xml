@@ -56,7 +56,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
-                    android:id="@+id/profileAcademicWorkExperienceRecyclerView"/>ach
+                    android:id="@+id/profileAcademicWorkExperienceRecyclerView"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:textColor="#000"
+                        android:lineSpacingMultiplier="1.3"
+                        android:text="You have not added any work experience"
+                        android:id="@+id/profileWorkExperienceTextDialog"
+                        android:visibility="invisible"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
@@ -247,6 +256,7 @@
                                 android:layout_width="20dp"
                                 android:layout_height="20dp"
                                 android:layout_marginRight="10dp"
+                                android:layout_gravity="center_vertical"
                                 android:src="@drawable/pencil"
                                 android:tint="@color/colorAccent" />
                         </LinearLayout>
@@ -309,14 +319,14 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="10dp"
                             android:orientation="horizontal">
+                            <!--
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Stream: "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textSize="15sp" />
-
+                                android:textSize="15sp" />-->
                             <TextView
                                 android:id="@+id/profileXIIStream"
                                 android:layout_width="match_parent"
@@ -333,13 +343,15 @@
                             android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
+                            <!--
+
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Passing Year: "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textSize="15sp" />
-
+                                -->
                             <TextView
                                 android:id="@+id/profileXIIPassingYear"
                                 android:layout_width="match_parent"
@@ -356,13 +368,13 @@
                             android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
+                            <!--
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Percentage: "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textSize="15sp" />
-
+                                android:textSize="15sp" />-->
                             <TextView
                                 android:id="@+id/profileXIIPercentage"
                                 android:layout_width="match_parent"
@@ -437,13 +449,14 @@
                             android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
+                            <!--
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Passing Year: "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                                 android:textSize="15sp" />
-
+                                -->
                             <TextView
                                 android:id="@+id/profileXPassingYear"
                                 android:layout_width="match_parent"
@@ -460,13 +473,13 @@
                             android:layout_marginRight="10dp"
                             android:orientation="horizontal">
 
+                            <!--
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Percentage: "
                                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                                android:textSize="15sp" />
-
+                                android:textSize="15sp" />-->
                             <TextView
                                 android:id="@+id/profileXPercentage"
                                 android:layout_width="match_parent"
@@ -521,6 +534,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:nestedScrollingEnabled="false" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#000"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="You have not added any trainings"
+                            android:id="@+id/profileTrainingsTextDialog"
+                            android:visibility="invisible"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -568,6 +590,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:nestedScrollingEnabled="false" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#000"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="You have not added any project"
+                            android:id="@+id/profileProjectsTextDialog"
+                            android:visibility="invisible"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"
@@ -613,6 +644,15 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:nestedScrollingEnabled="false" />
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textColor="#000"
+                            android:lineSpacingMultiplier="1.3"
+                            android:text="You have not added any achievement"
+                            android:id="@+id/profileAchievementsTextDialog"
+                            android:visibility="invisible"/>
                     </LinearLayout>
                     <View
                         android:layout_width="match_parent"

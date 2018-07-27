@@ -98,13 +98,11 @@ public class ProfilePersonalityFragment extends Fragment {
         });
         return view;
     }
-/*
     @Override
     public void onResume() {
         super.onResume();
-        setValues();
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
     }
-*/
     private void setValues() {
         progressDataSet.clear();
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlPersonality, new Response.Listener<String>() {

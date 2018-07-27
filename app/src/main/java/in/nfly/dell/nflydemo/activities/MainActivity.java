@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private ProgressDialog progressDialog;
+
     private static int currentPage = 0;
     private static int NUM_PAGES;
 
@@ -226,6 +228,10 @@ public class MainActivity extends AppCompatActivity {
         setCareerCards();
         setCoursesCards();
         setTestomialCards();
+        progressDialog=new ProgressDialog(MainActivity.this);
+        progressDialog.setTitle("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
     private void setCoursesCards()
@@ -377,6 +383,7 @@ public class MainActivity extends AppCompatActivity {
 
                     adapter= new HomeCompanyAdapter(MainActivity.this,companyIdDataSet,companyTitleDataSet,companyImageDataSet);
                     CompanyRecyclerView.setAdapter(adapter);
+                    progressDialog.cancel();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -6,10 +6,23 @@
     tools:context=".fragments.JobWiseFragments.JobRoleVideosFragment"
     android:orientation="vertical">
 
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:textSize="20sp"
+        android:id="@+id/jobRoleVideoView"/>-->
+    <!--
+    <fragment
+        android:name="com.google.android.youtube.player.YouTubePlayerSupportFragment"
+        android:id="@+id/jobRoleVideoView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"></fragment>-->
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
         android:id="@+id/jobRoleVideoView"/>
 
     <TextView

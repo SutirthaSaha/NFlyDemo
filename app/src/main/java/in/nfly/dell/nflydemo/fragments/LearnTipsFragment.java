@@ -65,11 +65,9 @@ public class LearnTipsFragment extends Fragment {
         learnTipsRecyclerView=v.findViewById(R.id.learnTipsRecyclerView);
         layoutManager=new GridLayoutManager(getContext(),2);
         learnTipsRecyclerView.setLayoutManager(layoutManager);
-        setValues();
         learnTipsImage=v.findViewById(R.id.learnTipsImage);
         Picasso.with(getContext()).load("https://newevolutiondesigns.com/images/freebies/google-material-design-wallpaper-17.jpg").into(learnTipsImage);
-
-
+        setValues();
         return v;
     }
 

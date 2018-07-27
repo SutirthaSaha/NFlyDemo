@@ -43,6 +43,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/editBasicDetailsDob"/>
             </android.support.design.widget.TextInputLayout>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

@@ -6,12 +6,17 @@
     android:orientation="vertical"
     tools:context=".fragments.CompanyDetailsVideosFragment">
 
+    <!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:textSize="20sp"
-        android:id="@+id/companyDetailsVideoView"/>
+        android:id="@+id/companyDetailsVideoView"/>-->
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/companyDetailsVideoView"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

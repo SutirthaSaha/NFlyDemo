@@ -65,8 +65,10 @@ public class ProfileAcademicFragment extends Fragment {
 
     private String user_id;
     private int status;
+    private int xcount=0,xiicount=0;
     private String date;
 
+    private TextView profileWorkExperienceTextDialog,profileTrainingsTextDialog,profileProjectsTextDialog,profileAchievementsTextDialog;
     private TextView profileCollegeName,profileCourse,profileBranch,profileClassOf,profileCGPA;
     private TextView profileXIISchool,profileXIIBoard,profileXIIStream,profileXIIPassingyear,profileXIIPercentage;
     private TextView profileXSchool,profileXBoard,profileXStream,profileXPassingyear,profileXPercentage;
@@ -150,6 +152,11 @@ public class ProfileAcademicFragment extends Fragment {
         profileBehance=view.findViewById(R.id.profileBehance);
         profileBlogLink=view.findViewById(R.id.profileBlogLink);
         profilePlayStore=view.findViewById(R.id.profilePlayStore);
+
+        profileWorkExperienceTextDialog=view.findViewById(R.id.profileWorkExperienceTextDialog);
+        profileTrainingsTextDialog=view.findViewById(R.id.profileTrainingsTextDialog);
+        profileProjectsTextDialog=view.findViewById(R.id.profileProjectsTextDialog);
+        profileAchievementsTextDialog=view.findViewById(R.id.profileAchievementsTextDialog);
 
         workExperienceAddBtn=view.findViewById(R.id.workExperienceAddBtn);
         collegeEducationEditBtn=view.findViewById(R.id.collegeEducationEditBtn);
@@ -276,7 +283,12 @@ public class ProfileAcademicFragment extends Fragment {
                 editCollegeEducationBranch.setText(profileBranch.getText().toString().trim());
                 editCollegeEducationCourse.setText(profileCourse.getText().toString().trim());
                 editCollegeEducationClassOf.setText(profileClassOf.getText().toString().trim());
-                editCollegeEducationCGPA.setText(profileCGPA.getText().toString().trim());
+                if(!profileCGPA.getText().toString().trim().equals("CGPA not provided")) {
+                    editCollegeEducationCGPA.setText(profileCGPA.getText().toString().trim());
+                }
+                else{
+                    editCollegeEducationCGPA.setText("");
+                }
 
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
                 alertDialog.setView(collegeEducationEditLayout);
@@ -321,13 +333,23 @@ public class ProfileAcademicFragment extends Fragment {
 
                 editSchoolEducationXIISchoolName.setText(profileXIISchool.getText().toString());
                 editSchoolEducationXIIBoard.setText(profileXIIBoard.getText().toString());
-                editSchoolEducationXIIStream.setText(profileXIIStream.getText().toString());
+                if(!profileXIIStream.getText().toString().equals("You have not added any class XII details")) {
+                    editSchoolEducationXIIStream.setText(profileXIIStream.getText().toString());
+                }
+                else{
+                    editSchoolEducationXIIStream.setText("");
+                }
                 editSchoolEducationXIIPassingYear.setText(profileXIIPassingyear.getText().toString());
                 editSchoolEducationXIIPercentage.setText(profileXIIPercentage.getText().toString());
 
                 editSchoolEducationXSchoolName.setText(profileXSchool.getText().toString());
                 editSchoolEducationXBoard.setText(profileXBoard.getText().toString());
-                editSchoolEducationXPassingYear.setText(profileXPassingyear.getText().toString());
+                if (!profileXPassingyear.getText().toString().equals("You have not added any class X details")) {
+                    editSchoolEducationXPassingYear.setText(profileXPassingyear.getText().toString());
+                }
+                else{
+                    editSchoolEducationXPassingYear.setText("");
+                }
                 editSchoolEducationXPercentage.setText(profileXPercentage.getText().toString());
 
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
@@ -471,10 +493,18 @@ public class ProfileAcademicFragment extends Fragment {
                 editWorkSamplePlayStore=workSampleEditLayout.findViewById(R.id.editWorkSamplePlayStore);
                 editWorkSampleBlogLink=workSampleEditLayout.findViewById(R.id.editWorkSampleBlogLink);
 
-                editWorkSampleGithub.setText(profileGitHub.getText().toString());
-                editWorkSampleBehance.setText(profileBehance.getText().toString());
-                editWorkSamplePlayStore.setText(profilePlayStore.getText().toString());
-                editWorkSampleBlogLink.setText(profileBlogLink.getText().toString());
+                if(!profileGitHub.getText().toString().equals("Not Provided")) {
+                    editWorkSampleGithub.setText(profileGitHub.getText().toString());
+                }
+                if(!profileBehance.getText().toString().equals("Not Provided")) {
+                    editWorkSampleBehance.setText(profileBehance.getText().toString());
+                }
+                if(!profilePlayStore.getText().toString().equals("Not Provided")) {
+                    editWorkSamplePlayStore.setText(profilePlayStore.getText().toString());
+                }
+                if(!profileBlogLink.getText().toString().equals("Not Provided")) {
+                    editWorkSampleBlogLink.setText(profileBlogLink.getText().toString());
+                }
 
                 AlertDialog.Builder alertDialog=new AlertDialog.Builder(getActivity());
                 alertDialog.setView(workSampleEditLayout);
@@ -1012,6 +1042,8 @@ public class ProfileAcademicFragment extends Fragment {
     }
 
     private void setValues() {
+        xcount=0;
+        xiicount=0;
         StringRequest stringRequest=new StringRequest(Request.Method.POST, urlAcademic, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -1024,25 +1056,112 @@ public class ProfileAcademicFragment extends Fragment {
                     profileCourse.setText(gradDetails.getString("user_course"));
                     profileBranch.setText(gradDetails.getString("user_branch"));
                     profileClassOf.setText(gradDetails.getString("user_passing_year"));
-                    profileCGPA.setText(gradDetails.getString("user_cgpa"));
+                    if(!gradDetails.getString("user_cgpa").equals("0.00")) {
+                        profileCGPA.setText(gradDetails.getString("user_cgpa"));
+                    }
+                    else{
+                        profileCGPA.setText("CGPA not provided");
+                    }
 
                     JSONObject schoolDetails=jsonObject.getJSONObject("user_school_details");
-                    profileXIISchool.setText(schoolDetails.getString("user_xii_school_name"));
-                    profileXIIBoard.setText(schoolDetails.getString("user_xii_board"));
-                    profileXIIStream.setText(schoolDetails.getString("user_xii_stream"));
-                    profileXIIPercentage.setText(schoolDetails.getString("user_xii_marks"));
-                    profileXIIPassingyear.setText(schoolDetails.getString("user_xii_passing_year"));
 
-                    profileXSchool.setText(schoolDetails.getString("user_x_school_name"));
-                    profileXBoard.setText(schoolDetails.getString("user_x_board"));
-                    profileXPercentage.setText(schoolDetails.getString("user_x_marks"));
-                    profileXPassingyear.setText(schoolDetails.getString("user_x_passing_year"));
+                    if(!schoolDetails.getString("user_xii_school_name").isEmpty()){
+                        profileXIISchool.setText(schoolDetails.getString("user_xii_school_name"));
+                    }
+                    else{
+                        profileXIISchool.setText("");
+                        xiicount++;
+                    }
+                    if(!schoolDetails.getString("user_xii_board").isEmpty()) {
+                        profileXIIBoard.setText(schoolDetails.getString("user_xii_board"));
+                    }
+                    else{
+                        profileXIIBoard.setText("");
+                        xiicount++;
+                    }
+                    if(!schoolDetails.getString("user_xii_stream").isEmpty()) {
+                        profileXIIStream.setText("Stream: " + schoolDetails.getString("user_xii_stream"));
+                    }
+                    else{
+                        profileXIIStream.setText("");
+                        xiicount++;
+                    }
+                    if(!schoolDetails.getString("user_xii_marks").isEmpty()&& !schoolDetails.getString("user_xii_marks").equals("0")) {
+                        profileXIIPercentage.setText("Percentage: " + schoolDetails.getString("user_xii_marks"));
+                    }
+                    else{
+                        profileXIIPercentage.setText("");
+                        xiicount++;
+                    }
+                    if(!schoolDetails.getString("user_xii_passing_year").isEmpty() && !schoolDetails.getString("user_xii_passing_year").equals("0000")) {
+                        profileXIIPassingyear.setText("Passing Year: " + schoolDetails.getString("user_xii_passing_year"));
+                    }
+                    else{
+                        profileXIIPassingyear.setText("");
+                        xiicount++;
+                    }
 
+                    if(xiicount==5){
+                        profileXIIStream.setText("You have not added any class XII details");
+                    }
+
+                    if(!schoolDetails.getString("user_x_school_name").isEmpty()) {
+                        profileXSchool.setText(schoolDetails.getString("user_x_school_name"));
+                    }
+                    else{
+                        profileXSchool.setText("");
+                        xcount++;
+                    }
+                    if(!schoolDetails.getString("user_x_board").isEmpty()) {
+                        profileXBoard.setText(schoolDetails.getString("user_x_board"));
+                    }
+                    else{
+                        profileXBoard.setText("");
+                        xcount++;
+                    }
+                    if(!schoolDetails.getString("user_x_marks").isEmpty() && !schoolDetails.getString("user_x_marks").equals("0")){
+                        profileXPercentage.setText("Percentage: "+schoolDetails.getString("user_x_marks"));
+                    }
+                    else{
+                        profileXPercentage.setText("");
+                        xcount++;
+                    }
+                    if(!schoolDetails.getString("user_x_passing_year").isEmpty() && !schoolDetails.getString("user_x_passing_year").equals("0000")) {
+                        profileXPassingyear.setText("Passing Year: " + schoolDetails.getString("user_x_passing_year"));
+                    }
+                    else{
+                        profileXPassingyear.setText("");
+                        xcount++;
+                    }
+
+                    if(xcount==4){
+                        profileXPassingyear.setText("You have not added any class X details");
+                    }
                     JSONObject workSample=jsonObject.getJSONObject("user_work_sample");
-                    profileGitHub.setText(workSample.getString("github_profile"));
-                    profilePlayStore.setText(workSample.getString("playstore_profile"));
-                    profileBehance.setText(workSample.getString("design_profile"));
-                    profileBlogLink.setText(workSample.getString("blog_profile"));
+                    if(!workSample.getString("github_profile").isEmpty()) {
+                        profileGitHub.setText(workSample.getString("github_profile"));
+                    }
+                    else{
+                        profileGitHub.setText("Not Provided");
+                    }
+                    if(!workSample.getString("playstore_profile").isEmpty()) {
+                        profilePlayStore.setText(workSample.getString("playstore_profile"));
+                    }
+                    else{
+                        profilePlayStore.setText("Not Provided");
+                    }
+                    if(!workSample.getString("design_profile").isEmpty()) {
+                        profileBehance.setText(workSample.getString("design_profile"));
+                    }
+                    else{
+                        profileBehance.setText("Not Provided");
+                    }
+                    if(!workSample.getString("blog_profile").isEmpty()) {
+                        profileBlogLink.setText(workSample.getString("blog_profile"));
+                    }
+                    else{
+                        profileBlogLink.setText("Not Provided");
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1085,6 +1204,7 @@ public class ProfileAcademicFragment extends Fragment {
     }
 
     public void setAchievements() {
+        profileAchievementsTextDialog.setVisibility(View.INVISIBLE);
         achievementIdDataSet.clear();
         achievementNameDataSet.clear();
         achievementDescriptionDataSet.clear();
@@ -1095,6 +1215,9 @@ public class ProfileAcademicFragment extends Fragment {
                 try {
                     JSONObject arrayObject;
                     JSONArray parentArray=new JSONArray(response);
+                    if(parentArray.length()==0){
+                        profileAchievementsTextDialog.setVisibility(View.VISIBLE);
+                    }
                     for(int i=0;i<parentArray.length();i++){
                         arrayObject=parentArray.getJSONObject(i);
                         achievementIdDataSet.add(arrayObject.getString("ua_id"));
@@ -1145,6 +1268,7 @@ public class ProfileAcademicFragment extends Fragment {
 
     }
     public void setWorkExp() {
+        profileWorkExperienceTextDialog.setVisibility(View.INVISIBLE);
         workExpIdDataSet.clear();
         companyNameDataSet.clear();
         postionDataSet.clear();
@@ -1159,6 +1283,9 @@ public class ProfileAcademicFragment extends Fragment {
                 try {
                     JSONObject arrayObject;
                     JSONArray parentArray=new JSONArray(response);
+                    if(parentArray.length()==0){
+                        profileWorkExperienceTextDialog.setVisibility(View.VISIBLE);
+                    }
                     for(int i=0;i<parentArray.length();i++){
                         arrayObject=parentArray.getJSONObject(i);
                         workExpIdDataSet.add(arrayObject.getString("ued_id"));
@@ -1214,6 +1341,7 @@ public class ProfileAcademicFragment extends Fragment {
     }
 
     public void setTrainings() {
+        profileTrainingsTextDialog.setVisibility(View.INVISIBLE);
         trainingIdDataSet.clear();
         courseDataSet.clear();
         durationDataSet.clear();
@@ -1226,6 +1354,9 @@ public class ProfileAcademicFragment extends Fragment {
                 try {
                     JSONObject arrayObject;
                     JSONArray parentArray=new JSONArray(response);
+                    if(parentArray.length()==0){
+                        profileTrainingsTextDialog.setVisibility(View.VISIBLE);
+                    }
                     for(int i=0;i<parentArray.length();i++) {
                         arrayObject = parentArray.getJSONObject(i);
                         trainingIdDataSet.add(arrayObject.getString("utd_id"));
@@ -1279,6 +1410,7 @@ public class ProfileAcademicFragment extends Fragment {
     }
 
     public void setProjects(){
+        profileProjectsTextDialog.setVisibility(View.INVISIBLE);
         projectIdDataSet.clear();
         projectTitleDataSet.clear();
         projectDescriptionDataSet.clear();
@@ -1290,6 +1422,9 @@ public class ProfileAcademicFragment extends Fragment {
                 try {
                     JSONObject arrayObject;
                     JSONArray parentArray=new JSONArray(response);
+                    if(parentArray.length()==0){
+                        profileProjectsTextDialog.setVisibility(View.VISIBLE);
+                    }
                     for(int i=0;i<parentArray.length();i++){
                         arrayObject=parentArray.getJSONObject(i);
                         projectIdDataSet.add(arrayObject.getString("up_id"));
