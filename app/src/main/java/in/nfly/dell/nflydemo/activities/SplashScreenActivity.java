@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import in.nfly.dell.nflydemo.R;
+import in.nfly.dell.nflydemo.activities.singleActivities.SplashScreenSliderActivity;
 
 public class SplashScreenActivity extends AppCompatActivity {
     ImageView splashScreenImageView;
@@ -36,7 +37,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 try {
                     sleep(3000);
                     if(checkInternetConnection()) {
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), SplashScreenSliderActivity.class);
                         startActivity(intent);
                         finish();
                     }

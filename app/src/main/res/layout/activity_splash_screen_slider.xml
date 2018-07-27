@@ -15,13 +15,43 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="0dp">
         </android.support.v4.view.ViewPager>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignBottom="@+id/splashScreenViewPager">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Previous"
+                android:id="@+id/SplashScreenSwipePrev"
+                android:textSize="15sp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#fff"/>
         <me.relex.circleindicator.CircleIndicator
             android:id="@+id/splashScreenSliderIndicator"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:layout_weight="1"
             app:ci_drawable="@drawable/slider_indicator_shape"
             android:layout_marginBottom="10dp"
-            android:layout_alignBottom="@+id/splashScreenViewPager" />
+             />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Next"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:id="@+id/SplashScreenSwipeNext"
+                android:textSize="15sp"
+                android:gravity="right"
+                android:layout_marginRight="13dp"
+                android:layout_gravity="right"
+                android:textColor="#fff"/>
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>

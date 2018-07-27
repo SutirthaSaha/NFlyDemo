@@ -1,16 +1,20 @@
 package in.nfly.dell.nflydemo.activities.singleActivities;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import in.nfly.dell.nflydemo.R;
+import in.nfly.dell.nflydemo.activities.LoginActivity;
 import in.nfly.dell.nflydemo.adapters.SplashScreenSwipeAdapter;
 import me.relex.circleindicator.CircleIndicator;
 
@@ -23,12 +27,16 @@ public class SplashScreenSliderActivity extends AppCompatActivity {
     private static int NUM_PAGES;
     private ViewPager viewPager;
     private SplashScreenSwipeAdapter swipeAdapter;
+    private TextView Previous, Next;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen_slider);
+
+        Previous=findViewById(R.id.SplashScreenSwipePrev);
+        Next=findViewById(R.id.SplashScreenSwipeNext);
 
 
         setViewPager();
@@ -47,8 +55,31 @@ public class SplashScreenSliderActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(currentPage==NUM_PAGES){
+                    Next.setVisibility(View.VISIBLE);
+                    Next.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent= new Intent(SplashScreenSliderActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
 
                     currentPage=0;
+
+                  //  Previous.setVisibility(View.VISIBLE);
+
+                }
+                else if(currentPage==0)
+                {
+                    //Previous.setVisibility(View.GONE);
+                   // Next.setVisibility(View.VISIBLE);
+
+                }
+                else
+                {
+
+                    //Next.setVisibility(View.VISIBLE);
+                   // Previous.setVisibility(View.VISIBLE);
                 }
                 viewPager.setCurrentItem(currentPage++, true);
             }
